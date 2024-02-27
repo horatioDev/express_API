@@ -1,0 +1,23 @@
+<h1 class="text-center mb-3">{{ title }}</h1>
+
+<div class="ml-0 container">
+  {{!-- Update Member --}}
+  <form id="updateMemberForm" action="/api/members/{{ member.id }}" method="PUT">
+    {{!-- Name --}}
+    <div class="form-group">
+      <label for="name">Name: </label>
+      <input type="text" name="name" id="name" class="form-control" value="{{ member.name }}">
+    </div>
+
+    {{!-- Email --}}
+    <div class="form-group">
+      <label for="email">Email: </label>
+      <input type="text" name="email" id="email" class="form-control" value="{{ member.email }}">
+    </div>
+
+    <button data-id="{{ member.id }}" id="saveBtn" class="btn btn-success mt-4">Save Changes</button>
+  </form>
+
+  <a href="/" class="btn btn-primary mt-2">Cancel</a>
+  <a href="/api/members/{{member.id}}" class="btn btn-light mt-2">View API</a>
+</div>

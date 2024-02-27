@@ -1,0 +1,44 @@
+<h1 class="text-center mb-3">{{ title }}</h1>
+
+{{!-- Add Member --}}
+<form id="addMemberForm" action="/api/members" method="POST">
+  {{!-- Name --}}
+  <div class="form-group">
+    <label for="name">Name: </label>
+    <input type="text" name="name" id="name" class="form-control" placeholder="John Doe">
+  </div>
+
+  {{!-- Email --}}
+  <div class="form-group">
+    <label for="email">Email: </label>
+    <input type="text" name="email" id="email" class="form-control" placeholder="johnDoe@fakeEmail.com">
+  </div>
+
+  <input class="btn btn-success mt-4" type="submit" value="Submit">
+</form>
+
+
+<div class="container mt-4">
+  <h4 class="text-center">Members:</h4>
+  <ul class="list-group">
+    {{#if members.length}}
+      {{#each members}}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{this.name}}: {{this.email}}
+          <div>
+            <!-- Update Member -->
+            <a href="/update/{{this.id}}" class="btn btn-warning mr-2">Edit</a>
+            <!-- Delete Member -->
+            <a data-id="{{this.id}}" href="/{{this.id}}" id="delete" class="btn btn-danger mr-2">Delete</a>
+          </div>
+        </li>
+      {{/each}}
+    {{else}}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        No Members Yet!
+      </li>
+    {{/if}}
+  </ul>
+
+  <a href="/api/members/" class="btn btn-light mt-4">View API</a>
+</div>
